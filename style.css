@@ -1,0 +1,194 @@
+*{
+    box-sizing: border-box;
+    background-color: #f5f5f5;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Mise en forme de la bar de navigation  */
+.nav-bar {
+    width: 100%;
+    height: 75px;
+    margin-top: 0;
+    padding-top: 0;
+    display: block;
+    font-size: 16px;
+    background-color: #000;
+}
+.nav-bar ul {
+    background-color: #000;
+    list-style: none;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: c;
+}
+
+.nav-bar li{
+    background-color: #000;
+    padding: 10px;
+    margin: 10px;
+}
+
+.nav-bar li :hover {
+    background-color: #444;
+   
+    
+}
+
+.nav-bar li a{
+    color: #fff;
+    background-color: #000;
+    text-decoration: none;
+    text-align: center;
+}
+
+#date , #heure{
+    color: #fff;
+    background-color: #000;
+    
+   
+}
+
+/*Mise en forme du nom de l'entreprise */
+
+#nom-entreprise h1 {
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: 20px;
+    font-size: 75px;
+    animation: moveRight 15s linear infinite; /* Animation de déplacement */
+}
+
+/* Animation de déplacement */
+@keyframes moveRight {
+    0% { transform: translateX(0); } /* Position initiale */
+    100% { transform: translateX(100%); } /* Déplacement complet vers la droite */
+}
+
+
+/*Mise en page du body sur le fait quel contient un aside  et un main*/
+#div-avec-aside{
+    display: flex;
+    justify-content: space-between;
+    gap: 2px;
+    flex-direction: row;
+}
+
+
+
+
+/*Mise à jour de l'aside*/
+
+
+.aside{
+    width: 20%;
+    background-color: #000;
+    color: #fff;
+    padding:  0;
+    margin: 0;
+    align-self: stretch; 
+}
+
+.aside li{
+    list-style: none;
+    background-color: #000;
+    color: #fff;
+    padding-bottom: 25px;
+    padding-top: 5px;
+    text-align: center;
+}
+
+.aside li:hover, .aside li a:hover{
+    color: #fff;
+    background-color: #444;
+}
+
+.aside li a{
+    text-decoration: none;
+    font-size: 16px;
+    background-color: #000;
+    color: #fff;
+   
+}
+
+
+/*Mise en page du main*/
+.main{
+    width: 75%;
+    background-color: #f5f5f5;
+    text-align: center;
+}
+
+/*Mise en forme des table employé*/
+#liste-employes-id .table-employe{
+    width: 90%;
+    text-align: center; 
+    margin-bottom: 20px;
+    background-color: #000;
+    border-collapse: collapse;
+    border: 1px solid black;
+}
+
+#liste-employes-id .table-employe tr td{
+    text-align: left;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#liste-employes-id .table-employe tr :first-child{
+    padding: 5px 0;
+}
+
+
+
+/* Code css pour la mise en formulaire du formulare */
+
+#table-employe{
+    display: inline-block;
+    width: 70%;
+    border: 2px solid;
+    border-radius: 10px;
+
+}
+
+#table-employe tr{
+    
+    width: 100%;
+    height: 40px;
+    margin: 20px 0;
+    text-align: left;
+    
+}
+/*
+#table-employe tr :last-child {
+   
+
+}*/
+#table-employe tr td{
+    margin: 50px 0;
+    width: calc(100%/3);
+    padding-left: 7px;
+ 
+}
+
+#table-employe tr :first-child input, 
+#table-employe tr :first-child select,
+#table-employe tr :last-child input, 
+#table-employe tr :last-child select{
+    width: 100%;
+    height: 40px;
+    border-radius: 10px;
+}
+
+#table-employe tr :nth-child(2){
+    margin-left: 100px;
+}
+
+#image-td {
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+#table-employe tr :first-child input{
+    background-color: #000;
+    color: #fff;
+}
