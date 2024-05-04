@@ -113,8 +113,9 @@
 /*Mise en page du main*/
 .main{
     width: 75%;
-    background-color: #f5f5f5;
-    text-align: center;
+    background-color: #f3f3f3;
+    text-align: left;
+    display: inline-block;
 }
 
 /*Mise en forme des table employé*/
@@ -174,8 +175,8 @@
 #table-employe tr :last-child input, 
 #table-employe tr :last-child select{
     width: 100%;
-    height: 40px;
-    border-radius: 10px;
+    height: 30px;
+    border-radius: 5px;
 }
 
 #table-employe tr :nth-child(2){
@@ -192,3 +193,351 @@
     background-color: #000;
     color: #fff;
 }
+
+#table-employe tr :first-child input :nth-child(2){
+    color: red;
+    background-color: blue;
+}
+
+#formulaire span {
+    color: red;
+    font-size: 20px;
+
+}
+
+
+
+/* Mise en forme de la page service  */
+.main-article .card-main{
+    display: block;
+    text-align: center;
+    margin-bottom: 50px;
+
+    
+}
+
+.main-article .card-main .formulaire
+{
+    display: inline-block;
+    text-align: left;
+    height: 500px;
+}
+
+.main-article .card-main .formulaire legend,
+.main-article .card-main  h2
+{
+    text-decoration: underline;
+    margin-bottom: 30px;
+    font-size: 25px;
+    font-weight: 700;
+
+}
+
+.main-article .card-main .formulaire tr{
+    width: 100%;
+
+    
+}
+
+.main-article .card-main .formulaire tr td{
+   
+    width: calc(100%/2);
+    height: 30px;
+
+}
+
+.main-article .card-main .formulaire tr td input,
+.main-article .card-main .formulaire tr td select,
+.main-article .card-main .formulaire tr td textarea
+{
+    width: 100%;
+    border-radius: 5px;
+
+}
+
+.main-article .card-main .formulaire tr td input,
+.main-article .card-main .formulaire tr td select
+{
+    height: 40px
+}
+
+.main-article .card-main .formulaire tr .formulaire-btn input{
+    background-color: #000;
+    color: #f5f5f5;
+}
+
+.main-article .card-main .formulaire tr .formulaire-btn input:hover{
+    background-color: #555;
+}
+
+
+.main-article  .lien-ancre{
+    text-align: left;
+    margin: 30px;
+    
+}
+
+.main-article .lien-ancre a{
+    color: #000;
+    font-size: 18px;
+    font-weight: 600;
+    text-decoration: none;
+    
+}
+
+.main-article .lien-ancre a:hover{
+    color:#000;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.main-article .card-main .table-liste{
+    width: 90%;
+    border: 2px solid #000;
+    border-radius: 5px;
+
+}
+
+.main-article .card-main .table-liste  tr td{
+    padding: 10px;
+    height: 40px;
+    font-weight: 500;
+}
+
+.main-article .card-main .table-liste .table-header tr td{
+    background-color: #000;
+    color: #fff;
+    font-weight: 800;
+
+   
+}
+
+
+.main-article .card-main .table-liste .table-body tr:nth-child(2n) td
+{
+    background-color: #555;
+    color: #fff;
+   
+
+}
+
+.main-article .card-main .table-liste .table-body tr:nth-child(2n+1) td
+{
+    background-color: #f5f5f5;
+    color: #000;
+  
+}
+
+.main-article .card-main .table-liste  tr td:nth-child(3)
+
+{
+    width: 30%;
+}
+
+.main-article .card-main .table-liste  tr td:nth-child(1){
+    width: 10%;
+    text-align: center;
+}
+
+.main-article .card-main .table-liste  tr td:nth-child(4){
+    width: 15%;
+}
+
+/*Mise en page de la page ressources*/
+#categories-main, 
+#consommables-main
+{
+    display: flex;
+    text-align: left;
+    flex-direction: row;
+    justify-content: start;
+    gap: 5%;
+}
+
+#categories-main .card-main{
+    display: inline-block;
+    
+}
+
+#categories-main .card-main .formulaire{
+    height: 270px;
+  
+}
+
+#categories-main .card-main  h2{
+    margin-top: 0;
+}
+
+#categories-main .card-main .table-liste{
+    width: 100%;
+}
+
+#categories-main .card-main .table-liste tr td :nth-child(3){
+    width: 60%;
+    text-align: right;
+}
+
+
+.main-article .card-main .alerte{
+    color: #fff;
+    font-size: 20px;
+    padding: 20px 0;
+    text-align: center;
+}
+
+/*
+    Mise en page du formulaire de partage 
+    des consommables
+*/
+
+.main-article-forme{
+    text-align: center;
+}
+
+.main-article-forme .card-main{
+    display: inline-block;
+    width: 100%;
+    padding: auto 10px;
+}
+
+.main-article-forme .card-main .formulaire{
+   width: 90%;
+    margin-bottom: 0;
+}
+
+.main-article-forme .card-main .formulaire .tabble-formulaire{
+    border-collapse: collapse;
+}
+.main-article-forme .card-main .formulaire .formulaire-legend{
+    font-size: 30px;
+    font-weight: 800;
+    display: none;
+}
+.main-article-forme .card-main .table-formulaire tr:nth-child(2n) td{
+    background-color: #000;
+    border-color: #000;
+    opacity: .8;
+    padding: 15px 0 15px 10;
+    color: #fff;
+}
+
+.main-article-forme .card-main .table-formulaire tr:nth-child(2n+1) td{
+    background-color: #fff;
+    border-color: #fff;
+    padding: 15px 0 15px 10;
+    color: #000;
+    
+}
+
+.main-article-forme .card-main .table-formulaire tr:nth-child(2) td{
+    text-align: center;
+    font-weight: 700;
+    opacity: 1;
+    padding: 15px 10px;
+    background-color: #000;
+    
+}
+
+.main-article-forme .card-main .table-formulaire tr:nth-child(1) td{
+    font-weight: 700;
+
+}
+
+.main-article-forme .card-main .table-formulaire tr:nth-child(1) td select{
+    width: 100%;
+    height: 40px;
+    font-size: 18px;
+    font-weight: 500;
+
+}
+
+.main-article-forme .card-main .table-formulaire tr td:nth-child(5) input{
+    width: 80%;
+    padding: 0;
+    height: 30px;
+    text-align: left;
+}
+
+
+.main-article-forme .card-main .table-formulaire tr td:nth-child(6) input{
+    width: 50%;
+    padding: 0;
+    height: 30px;
+   
+    background-color: #000;
+}
+
+
+
+
+.main-article-forme .card-main .table-formulaire .card-categorie .nom-categorie {
+    background-color: #00f;
+    color: #fff;
+    font-weight: 800;
+   
+}
+
+
+.main-article-forme .card-main button{
+    width: 90%;
+    margin-top: 5px;
+    height: 60px;
+    background-color: #000;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 800;
+
+}
+
+.main-article-forme .card-main button:hover{
+    opacity: .7;
+}
+
+
+  /* Style de la fenêtre modale */
+.main .main-article-forme  .modal {
+    display: none; /* Par défaut, cachez la fenêtre modale */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 40%;
+    height: 50%;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0);
+  }
+
+  .main .main-article-forme .modal  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
+
+  .main .main-article-forme .modal  .modal-content .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .main .main-article-forme .modal  .modal-content .close:hover,
+  .main .main-article-forme .modal  .modal-content.close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .main .main-article-forme .modal  .modal-content button{
+    width: 100%;
+    height: 40px;
+    background-color: #000;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 700;
+
+
+  }
+
+ 

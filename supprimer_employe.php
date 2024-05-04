@@ -45,68 +45,26 @@
     $service = "";
     $sexe = "";
 
-    
-    if(isset($_GET["recherche"]) ){
+    if(isset($_GET["recherche"])){
         $option_de_recherche = $_GET["option-recherche"];
-        var_dump($_GET);
-
         $id_employe = intval( explode(" ", $option_de_recherche)[0]);
+
     }
     elseif( isset($_GET["soumettre"]) ){
        
         $option_de_recherche = $_GET["option-recherche"];
         $id_employe = intval( explode(" ", $option_de_recherche)[0]);
-        var_dump(explode(" ", $option_de_recherche));
-        $nom= $_GET["nom"];
-        $prenom= $_GET["prenom"];
-        $email= $_GET["email"];
-        $date_naiss= $_GET["date_naiss"];
-        $date_embau= $_GET["date_embau"];
-        $salaire= $_GET["salaire"];
-        $nationalite = $_GET["nationalite"];
-        $niveau_etu = $_GET["niveau_etu"];
-        $residence = $_GET["residence"];
-        $contact = $_GET["contact"];
-        $photo = $_GET["btn-file"];
-        $service = $_GET["service"];
-        $id_service = intval(explode(" ", $service )[0]);
-        $sexe = $_GET["sexe"];
-
-        $valeurs = array(
-            $option_de_recherche,
-            $id_employe,
-            $nom,
-            $prenom,
-            $email,
-            $date_naiss,
-            $date_embau,
-            $salaire,
-            $nationalite,
-            $niveau_etu,
-            $residence,
-            $contact,
-            $id_service,
-            $sexe
-        );
-        
-        if(empty($photo)){
-            $valeurs[]=$photo;
-        }
-
-        //
         
 
-       
-        $resultat  = verifierValeursNonVides($valeurs);
-
+    
+        //vérification avant suppression de données
         
         if($resultat){
         
-            $reponse = mettreAJourEmploye($id_employe, $nom, $prenom, $email, $date_naiss, $date_embau, $salaire, $nationalite, $niveau_etu, 
-            $residence, $contact, $photo, $id_service, $sexe);
-            var_dump("Mise a jours");
-            var_dump($reponse);
+            
+        
             if($reponse){
+                
                 $option_de_recherche = "";
                 $id_employe = 0;
                 $nom ="";
@@ -122,8 +80,6 @@
                 $photo = "C:\wamp64\www\DEV\image\images_app\pgoto_de_profile.jpeg";
                 $service = "";
                 $sexe = "";     
-            }else{
-                echo "<h1>    VALEURS MANQUANTES  </h1>";
             }
         }
         else{
@@ -133,10 +89,7 @@
         //Rendre les champs des formulaires vides
         
     }
-    elseif(isset($_GET["btn_file"])){
-        $photo = $GET["btn_file"];
-        var_dump($_GET["btn_file"]);
-    }
+    
     else{
         $id_employe =0;
     }
@@ -162,7 +115,7 @@
 
         <!-- Traitement et opération à effectuer sur les employés -->
         <article id=modification-id>
-            <h1>Modification des informations d'un employé</h1>
+            <h1>Supprimer un enployé </h1>
             
             <?php 
             
@@ -189,7 +142,7 @@
             ?>
             <div class= container-formulaire  id = "container-formulaire">
                 
-                <form action="./modifier_employe.php" method="get" id = formulaire  enctype="multipart/form-data">
+                <form action="./supprimer_employe.php" method="get" id = formulaire  enctype="multipart/form-data">
                     <table id= table-employe >
                         <tr>
                             <td>
@@ -259,13 +212,13 @@
 
 
                         <tr>
-                            <td><input type="file" value=""<?php if(isset($photo)) echo $photo;?>"" name="btn-file"  id= "btn-file" onchange="afficherImage(event)"></td>
+                        <td rowspan= 5></td>
                             <td>Email : <span class = formulaire>*</span> </td>
                             <td> <input type="email" name="email" id="email" value = "<?php if(isset($email)) echo $email;?>"></td>
                         </tr>
 
                         <tr>
-                            <td rowspan= 4></td>
+                           
                             <td>Téléphone : <span class = formulaire>*</span> </td>
                             <td> <input type="text" name="contact" id="contact" value = "<?php if(isset($contact)) echo $contact;?>"></td>
                         </tr>
@@ -328,16 +281,13 @@
 
 </div>
 
+
+
+
+
+
 <script>
 
-         // Récupérer la valeur de la variable PHP dans JavaScript
-         var ma_variable_js = <?php echo json_encode($reponse); ?>;
-
-        // Vérifier si la variable JavaScript est false
-        if (ma_variable_js === false) {
-            // Afficher une alerte
-            alert("La variable PHP est fausse.");
-        }
 
         document.getElementById('monInputFile').addEventListener('change', function() {
             var input = this;

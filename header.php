@@ -2,8 +2,8 @@
    
     $menuItems = array(
         "Accueil" => "./index.php",
-        "Employe" => "./employe",
-        "Ressources" => "",
+        "Employe" => "./employe.php",
+        "Ressources" => "./ressources.php",
         "Statistiques" => "",
         "Aides" => ""
     );

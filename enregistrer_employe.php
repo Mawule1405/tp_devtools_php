@@ -6,11 +6,10 @@
     include "fonctions.php";
     include "nav.php";
 
-
     $menuItems = array(
         "Accueil" => "./index.php",
-        "Employe" => "./employe",
-        "Ressources" => "",
+        "Employe" => "./employe.php",
+        "Ressources" => "./ressources.php",
         "Statistiques" => "",
         "Aides" => ""
     );
@@ -18,7 +17,7 @@
     $asideItems = array(
         "Liste des employés" =>["liste-employes-id", "./employe.php"],
         "Modification d'un employé" => ["modification-employe-id", "./modifier_employe.php"],
-        "Enrégistrez un emloyé" =>["enregistrer-employe-id", "./enregistrer_employe.php"],
+        "Enregistrez un emloyé" =>["enregistrer-employe-id", "./enregistrer_employe.php"],
         "Suppression d'un employé" =>["supprission-employe-id", "./supprimer_employe.php"],
         "Gestions des services" => ["gestion-services-id", "./gestion_services.php"]
     );
@@ -26,7 +25,7 @@
     
     echo create_nav_bar($menuItems);
     $services = getAllServices();
-    $reponse = FALSE;
+    $reponse =TRUE;
 
     #Vérification des valeurs de recherches
     $option_de_recherche = "";
@@ -45,18 +44,9 @@
     $service = "";
     $sexe = "";
 
-    
-    if(isset($_GET["recherche"]) ){
-        $option_de_recherche = $_GET["option-recherche"];
-        var_dump($_GET);
-
-        $id_employe = intval( explode(" ", $option_de_recherche)[0]);
-    }
-    elseif( isset($_GET["soumettre"]) ){
-       
-        $option_de_recherche = $_GET["option-recherche"];
-        $id_employe = intval( explode(" ", $option_de_recherche)[0]);
-        var_dump(explode(" ", $option_de_recherche));
+    //Verification du formulaire
+    if( isset($_GET["soumettre"]) )
+    {
         $nom= $_GET["nom"];
         $prenom= $_GET["prenom"];
         $email= $_GET["email"];
@@ -104,8 +94,7 @@
         
             $reponse = mettreAJourEmploye($id_employe, $nom, $prenom, $email, $date_naiss, $date_embau, $salaire, $nationalite, $niveau_etu, 
             $residence, $contact, $photo, $id_service, $sexe);
-            var_dump("Mise a jours");
-            var_dump($reponse);
+
             if($reponse){
                 $option_de_recherche = "";
                 $id_employe = 0;
@@ -130,8 +119,7 @@
 
         }
 
-        //Rendre les champs des formulaires vides
-        
+        //Rendre les champs des formulaires vides  
     }
     elseif(isset($_GET["btn_file"])){
         $photo = $GET["btn_file"];
@@ -162,47 +150,20 @@
 
         <!-- Traitement et opération à effectuer sur les employés -->
         <article id=modification-id>
-            <h1>Modification des informations d'un employé</h1>
+            <h1>Formulaire d'enrégistrement d'un employé</h1>
             
             <?php 
-            
-                if($id_employe != 0){
-                    $employe = getOneEmploye($id_employe);
-                    $nom = $employe["nom_emp"];
-                    $prenom = $employe["prenom_emp"];
-                    $email =$employe["email_emp"];
-                    $date_naiss =$employe["date_nais_emp"];
-                    $date_embau =$employe["date_embau_emp"];
-                    $salaire = $employe["salaire_emp"];
-                    $nationalite = $employe["nationalite_emp"];
-                    $niveau_etu = $employe["niveau_etu_emp"];
-                    $residence = $employe["lieu_res_emp"];
-                    $contact = $employe["contact_emp"];
-                    $photo = $employe["photo_emp"];
-                    $service = $employe["id_serv"];
-                    $sexe = $employe["Sexe"];
-                }
 
-
-                
-            
             ?>
             <div class= container-formulaire  id = "container-formulaire">
                 
                 <form action="./modifier_employe.php" method="get" id = formulaire  enctype="multipart/form-data">
                     <table id= table-employe >
                         <tr>
-                            <td>
-                                <select name="option-recherche" id="option-recherche" >
-                                    <?php 
-                                        foreach($options as $index => $option){
-                                            // Vérifier si l'option est sélectionnée
-                                            $selected = ($option == $option_de_recherche) ? "selected" : "";
-                                            echo  "<option value='$option' $selected> $option </option>";
-                                        }
-                                    ?>
-                                </select>
-                            </td>
+                        <td rowspan = 6 id= "image-td"><img src="<?php echo localPathToUrl($photo) ?>" alt="Photo de l'employé"
+                             id= "<?php echo $id_employe; ?>" srcset="" 
+                            width= 150px height = 150px>
+                        </td>
                             
                             <td>Nom : <span class = formulaire>*</span></td>
                             <td> <input type="text" name="nom" id="nom" value = <?php if(isset($nom)) echo $nom;?>></td>
@@ -212,16 +173,14 @@
 
                         <tr>
                             
-                            <td><input type="submit" value="recherche" name="recherche"></td>
+                            
                             <td>Prénom : <span class= formulaire>*</span></td>
                             <td> <input type="text" name="prenom" id="prenom" value = "<?php if(isset($prenom)) echo $prenom;?>"></td>
                         </tr>
 
 
                         <tr>
-                            <td rowspan = 4 id= "image-td"><img src="<?php echo localPathToUrl($photo) ?>" alt="Photo de l'employé"
-                             id= "<?php echo $id_employe; ?>" srcset="" 
-                            width= 150px height = 150px></td>
+                            
                             <td>Sexe :  <span class= formulaire>*</span></td>
                             <td>  
                                         <select name="sexe" id="sexe" >
@@ -259,7 +218,7 @@
 
 
                         <tr>
-                            <td><input type="file" value=""<?php if(isset($photo)) echo $photo;?>"" name="btn-file"  id= "btn-file" onchange="afficherImage(event)"></td>
+                            <td><input type="file" value="" name="btn-file"  id= "btn-file" onchange="afficherImage(event)"></td>
                             <td>Email : <span class = formulaire>*</span> </td>
                             <td> <input type="email" name="email" id="email" value = "<?php if(isset($email)) echo $email;?>"></td>
                         </tr>
@@ -331,13 +290,13 @@
 <script>
 
          // Récupérer la valeur de la variable PHP dans JavaScript
-         var ma_variable_js = <?php echo json_encode($reponse); ?>;
+        // var ma_variable_js = <?php echo json_encode($reponse); ?>;
 
         // Vérifier si la variable JavaScript est false
-        if (ma_variable_js === false) {
+        //if (ma_variable_js === false) {
             // Afficher une alerte
-            alert("La variable PHP est fausse.");
-        }
+        //    alert("La variable PHP est fausse.");
+        //}
 
         document.getElementById('monInputFile').addEventListener('change', function() {
             var input = this;

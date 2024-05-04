@@ -5,8 +5,8 @@
 
     $menuItems = array(
         "Accueil" => "./index.php",
-        "Employe" => "./employe",
-        "Ressources" => "",
+        "Employe" => "./employe.php",
+        "Ressources" => "./ressources.php",
         "Statistiques" => "",
         "Aides" => ""
     );
@@ -14,9 +14,9 @@
     $asideItems = array(
         "Liste des employés" =>["liste-employes-id", "#"],
         "Modification d'un employé" => ["modification-employe-id", "./modifier_employe.php"],
-        "Recherche d'un emloyé" =>["recherche-employe-id", "#"],
-        "Suppression d'un employé" =>["supprission-employe-id", "#"],
-        "Gestions des services" => ["gestion-services-id", "#"]
+        "Enregistrez un emloyé" =>["enregistrer-employe-id", "./enregistrer_employe.php"],
+        "Suppression d'un employé" =>["supprission-employe-id", "suppression_employe.php"],
+        "Gestions des services" => ["gestion-services-id", "./gestion_services.php"]
     );
 
     include "nav.php";
@@ -36,7 +36,7 @@
             <h1>Liste des employés</h1>
             <?php 
 
-                include "graphi_print.php";
+               
                 include "fonctions.php";
                 $allEmployees = getAllEmployees();
                

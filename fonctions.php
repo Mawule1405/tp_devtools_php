@@ -1,4 +1,8 @@
 <?php
+
+    include "./graphi_print.php";
+
+
     function build_employe($employe){
         if($employe["photo_emp"])
         {   
@@ -34,4 +38,100 @@
 
         return $liste;
     }
+
+
+    function verifierValeursNonVides($valeurs) {
+        //Fonction pour valider les champs
+        foreach ($valeurs as $valeur) {
+            // Vérifie si la valeur est vide ou nulle
+            if (empty($valeur)) {
+                return false;
+            }
+        }
+        // Toutes les valeurs sont non vides ou non nulles
+        return true;
+    }
+
+
+    function construireLigne($id, $nom, $qtestock, $qteseuil){
+        /*  
+            Cette fonction permet de générer une ligne de consommable
+            @param: id, nom, qte en stock, qte seuil
+            @return: ligne du tableau
+        */
+        echo <<<MAT
+                <tr>
+                    <td> $id </td>
+                    <td colspan=4> $nom </td>
+                    <td> $qtestock </td>
+                    <td> $qteseuil </td>
+                    <td> <input type="number" name="$id" value="$id"> </td>
+                    <td> <input type="checkbox" name="$id" value="$id"> </td>
+                </tr>
+    MAT;
+    }
+    
+
+    function construireTableau($idCat){
+        /* 
+            Cette fonction permet de générer un tableau de consommable d'une même catégorie
+            @param: l'identifiant de la catégorie
+            @return: un tableau
+        */
+        $categorie = getOneCategorie($idCat);
+        if(!empty($categorie)){
+        $cat =$categorie[0];
+       
+    
+        $consos = getConsommablesOfCategorie($idCat);
+      
+        if(!empty($consos)){
+            echo <<<TR
+            <tr class= "card-categorie">
+                <td colspan="11" class='nom-categorie' > {$cat["nom_cat"]} </td>
+            </tr>
+    TR;
+            foreach($consos as $consommable){
+               
+            echo <<<HTML
+                    <tr data-idcons="{$consommable['id_cons']}" data-nomcons="{$consommable['nom_cons']}">
+                    <td>{$consommable['id_cons']}</td>
+                    <td colspan='4'>{$consommable['nom_cons']}</td>
+                    <td colspan='2'>{$consommable['qtestock_cons']}</td>
+                    <td colspan='2'>{$consommable['qteseuil_cons']}</td>
+                    <td>
+                        <input type='number' name="{$consommable['id_cons']}" value='0' id="qte_{$consommable['id_cons']}" disabled max="{$consommable['qtestock_cons']}" min="0" onchange="checkValue(this)">
+                    </td>
+                    <td>
+                        <input type='checkbox' name="{$consommable['id_cons']}" value="{$consommable['id_cons']}" onchange="toggleInput(this)">
+                    </td>
+                    </tr>
+            HTML;
+            }
+        }
+    }
+}
+    
 ?>
+
+<script>
+    function toggleInput(checkbox) {
+        var input = document.getElementById("qte_" + checkbox.value);
+        input.disabled = !checkbox.checked;
+        input.value = checkbox.checked ? 0 : ''; // Réinitialise la valeur à zéro si la case est cochée, sinon vide
+        checkValue(input);
+    }
+
+    function checkValue(input) {
+        var value = parseFloat(input.value);
+        var max = parseFloat(input.max);
+
+        if (isNaN(value) || value <= 0) { // Vérifie si la valeur est numérique et positive
+            input.style.color = 'red'; // Affiche en rouge si la valeur est invalide
+        } else if (value > max) {
+            input.style.color = 'red'; // Affiche en rouge si la valeur dépasse la limite maximale
+        } else {
+            input.style.color = 'black'; // Couleur par défaut
+        }
+    }
+</script>
