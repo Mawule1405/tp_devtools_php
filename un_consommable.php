@@ -2,26 +2,41 @@
 /*Ce fichier me permet d'afficher, de modifier et de supprimer un consommable  */
 include "fonctions.php";
 
-$enregistrer = "";
-$annuler="";
+$enregistrerModification = "";
+$annulerModification="";
+$annulerSuppression = "";
+$confirmerSuppresion ="";
+
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   
+    var_dump(($_POST));
     if (isset($_POST['action']) && $_POST['action'] === 'enregistrer') {
+        var_dump(($_POST));
         // Les données sont envoyées pour être enregistrées
+        $enregistrerModification = "";
         $_POST["enregistre"] = "";
         $idConsommable = $_POST['idConsommable'];
         $nomConsommable = $_POST['nomConsommable'];
         $qteStock = $_POST['qteStock'];
         $qteSeuil = $_POST['qteSeuil'];
         $prixUnitaire = $_POST['prixUnitaire'];
+        var_dump(($_POST));
         // Traiter l'image si nécessaire
         var_dump(($prixUnitaire));
         // Faites ce que vous devez faire avec les données ici
     } elseif (isset($_POST['action']) && $_POST['action'] === 'annuler') {
         // Le bouton "Annuler" a été pressé
         // Traitement pour annuler
+        $annulerModification = "";
         var_dump("AU REVOIR");
+    }elseif (isset($_POST['action']) && $_POST['action'] === 'confirmerSuppression') {
+        // Le bouton "Confirmer" de la fenêtre modale de suppression a été pressé
+        var_dump(("suppression confirmer"));
+        // Effectuer le traitement de suppression
+    } elseif (isset($_POST['action']) && $_POST['action'] === 'annulerSuppression') {
+        // Le bouton "Annuler" de la fenêtre modale de suppression a été pressé
+        // Effectuer le traitement nécessaire
+        var_dump(("suppression annuler"));
     }
 }
 
@@ -52,19 +67,26 @@ function buildConsommable($consommable){
         <tr>
             <td> Quantité en stock :  </td>
             <td> {$consommable['qtestock_cons']} </td>  
-            <td> <button class="action-button"> Supprimer </button>   </td>
+            <!-- Ajoutez un identifiant unique à chaque bouton "Supprimer" -->
+            <td> <button class="action-button" onclick="confirmationSuppression({$consommable['id_cons']})">Supprimer</button> </td>
+
         </tr>
 
         <tr>
             <td> Quantité en seuil :  </td>
             <td> {$consommable['qteseuil_cons']} </td>
-            <td> <button class="action-button"> Approvisionner </button>   </td>  
+            <td> 
+                <button class="action-button" onclick="redirectApprovisionnement()"> Approvisionner </button>   
+            </td> 
+
         </tr>
 
         <tr>
             <td> Prix unitaire :  </td>
             <td> {$consommable['prix_unitaire_cons']} FCFA</td>
-            <td> <button class="action-button"> Attribuer</button>   </td>
+            <td> 
+                <button class="action-button" onclick="openAttributionModal()"> Attribuer </button>   
+            </td>
         </tr>
     </table>
 TAB;
@@ -90,8 +112,41 @@ buildConsommable((getOneConsommable(2)[0]));
             <label for="prixUnitaire">Prix unitaire (FCFA):</label>
             <input type="number" id="prixUnitaire" name="prixUnitaire"><br>
             <input type="file" id="image" name="image"> <br>
-            <button type="submit" onclick= "closeModal()" name="action"  value="annuler">Annuler</button>
-            <button type="submit" onclick="saveChanges()" name="action"  value="enregistrer">Enregistrer</button>
+            <button type="submit" onclick= "closeModal()" name="action"  value="<?php $annulerModification ?>" id="annuler-btn">Annuler</button>
+            <button type="submit" onclick="saveChanges()" name="action"  value="<?php $enregistrerModification ?>" id= "enregistrer-btn">Enregistrer</button>
+        </form>
+    </div>
+</div>
+
+
+<!-- Fenêtre modale de confirmation -->
+<div id="confirmationModal" class="modal">
+    <div class="modal-content">
+        <h2>Confirmation </h2>
+        <p>Êtes-vous sûr de vouloir supprimer ce consommable ?</p>
+        <form class="modal-buttons" method="post">
+            <button id="confirmerSuppression" name="action" value="<?php $confirmerSuppresion?>">Confirmer</button>
+            <button id="annulerSuppression" name="action" value="<?php $annulerSuppression?>">Annuler</button>
+        </form>
+    </div>
+</div>
+
+
+<!-- Fenêtre modale d'attribution -->
+<div id="attributionModal" class="modal">
+    <div class="modal-content">
+        <h2>Attribuer le consommable</h2>
+        <form id="attributionForm" onsubmit="confirmAttribution()">
+            <label for="employee">Employé :</label>
+            <select id="employee" name="employee">
+                <!-- Options pour les employés -->
+                <option value="employee1">Employé 1</option>
+                <option value="employee2">Employé 2</option>
+                <!-- Ajoutez d'autres options selon vos besoins -->
+            </select><br>
+            <label for="quantity">Quantité :</label>
+            <input type="number" id="quantity" name="quantity"><br>
+            <button type="submit">Confirmer</button>
         </form>
     </div>
 </div>
@@ -122,11 +177,13 @@ buildConsommable((getOneConsommable(2)[0]));
 function closeModal() {
     var modal = document.getElementById("editModal");
     modal.style.display = "none"; // Cacher la fenêtre modale
+    //Changer la valeur du bouton
+    var boutonEnregistrer = document.getElementById("annuler-btn");
+    boutonEnregistrer.value = "annuler";
   }
 
 
-  function saveChanges(event) {
-    event.preventDefault(); // Empêcher le formulaire de se soumettre normalement
+  function saveChanges() {
 
     var idConsommable = document.getElementById("idConsommable").value;
     var nomConsommable = document.getElementById("nomConsommable").value;
@@ -134,6 +191,8 @@ function closeModal() {
     var qteSeuil = document.getElementById("qteSeuil").value;
     var prixUnitaire = document.getElementById("prixUnitaire").value;
     var image = document.getElementById("image").files[0]; // Récupérer le fichier image
+    var boutonEnregistrer = document.getElementById("enregistrer-btn");
+    boutonEnregistrer.value = "enregistrer";
 
     // Créer un objet FormData pour envoyer les données du formulaire
     var formData = new FormData();
@@ -160,20 +219,94 @@ function closeModal() {
     location.reload(true);
 }
 
+function confirmationSuppression(idConsommable) {
+    // Récupérer la fenêtre modale de confirmation
+    var modal = document.getElementById("confirmationModal");
+    
+    // Afficher la fenêtre modale
+    modal.style.display = "block";
+
+    // Gérer la suppression lors de la confirmation
+    document.getElementById("confirmerSuppression").addEventListener("click", function() {
+        var boutonConfirmer = document.getElementById("confirmerSuppression");
+        boutonConfirmer.value = "confirmerSuppression";
+        
+        // Fermer la fenêtre modale
+        modal.style.display = "none";
+
+        // Créer un objet FormData pour envoyer les données du formulaire
+        var formData = new FormData();
+        formData.append('idConsommable', idConsommable);
+
+        // Envoyer une requête AJAX pour supprimer le consommable côté serveur
+        var xhr = new XMLHttpRequest();
+        xhr.open('POST', 'un_consommable.php', true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                // Gérer la réponse du serveur si nécessaire
+                console.log('Consommable supprimé avec succès');
+                // Rafraîchir la page ou effectuer d'autres actions
+            } else {
+                console.error('Erreur lors de la suppression du consommable');
+            }
+        };
+        xhr.send(formData); // Envoyer les données du formulaire au serveur via AJAX
+    });
+
+    // Annuler la suppression si l'utilisateur clique sur "Annuler"
+    document.getElementById("annulerSuppression").addEventListener("click", function() {
+        var boutonAnnulation = document.getElementById("annulerSuppression");
+        boutonAnnulation.value = "AnnuerSuppression";
+        modal.style.display = "none"; // Fermer la fenêtre modale
+        console.log("Suppression annulée");
+    });
+}
+
+
+function redirectApprovisionnement() {
+    // Rediriger vers la page approvisionnement.php
+    window.location.href = "approvisionnement.php";
+}
+
+
+// Fonction pour afficher la fenêtre modale d'attribution
+function openAttributionModal() {
+    var modal = document.getElementById("attributionModal");
+    modal.style.display = "block";
+}
+
+// Fonction pour traiter la confirmation de l'attribution
+function confirmAttribution() {
+    // Récupérer les valeurs des champs
+    var employee = document.getElementById("employee").value;
+    var quantity = document.getElementById("quantity").value;
+
+    // Effectuer les actions nécessaires, par exemple :
+    console.log("Employé sélectionné :", employee);
+    console.log("Quantité attribuée :", quantity);
+
+    // Fermer la fenêtre modale
+    var modal = document.getElementById("attributionModal");
+    modal.style.display = "none";
+
+    // Empêcher le formulaire de se soumettre normalement
+    event.preventDefault();
+}
+
 </script>
 
 
 
 
 <style>
-    #editModal {
+    .modal {
         display: none; /* Masquer la fenêtre modale par défaut */
         position: fixed; /* Position fixe pour rester au-dessus du contenu de la page */
         z-index: 1; /* Plus haut niveau d'empilement pour s'assurer qu'il est visible */
-        left: 0;
+        left: 25%;
         top: 0;
         width: 50%; /* Pleine largeur */
-        height: 200%; /* Pleine hauteur */
+        height: 150%; /* Pleine hauteur */
         overflow: auto; /* Activer le défilement si nécessaire */
         background-color: rgb(0,0,0); /* Fond semi-transparent */
         background-color: rgba(0,0,0,0); /* Fond semi-transparent avec transparence */
