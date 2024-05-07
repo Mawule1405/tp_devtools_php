@@ -543,9 +543,15 @@ function insertOneEmploye($infoEmploye){
 
 
 <?php
+
+    /*  
+        ===================================
+        GESTION DES DEMANDES (ATTRIBUTIONS)
+        ===================================
+    */
     function insererDemande($idEmp, $idCons, $qteDemande, $date){
         /* 
-            Cette fonction permet d' insérer des données dans la tables demandes:
+            Cette fonction permet d'insérer des données dans la tables demandes:
             @param: id_emp, id_cons, ate_demande, date de la demande
             return : None
         */
@@ -569,24 +575,111 @@ function insertOneEmploye($infoEmploye){
 
 
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-       
-        $data = json_decode(file_get_contents("php://input"), true);
-        $file = 'demande_data.txt'; // Nom du fichier de sauvegarde
-        $fileContent = ''; // Contenu à écrire dans le fichier
     
-        // Ajouter chaque entrée au contenu du fichier
-        foreach ($data as $entry) {
-            $mysqlDate = date("Y-m-d", strtotime($entry['date']));
-            insererDemande($entry['id_emp'], $entry['id_cons'], $entry['qte'], $mysqlDate);
-            $fileContent .= "ID Employé: " . $entry['id_emp'] . " | ID Consommable: " . $entry['id_cons'] . " | Quantité: " . $entry['qte'] . " | Date: " . $entry['date'] . PHP_EOL;
+?>
+
+
+<?php
+    /*
+        =========================================
+        GESTION DES COMMANDES (APPROVISIONNEMENT)
+        =========================================
+    */
+
+    function derniereCommande(){
+        /*  
+            Cette fonction permet de récupérer l'id de la dernière commande effectuée
+        */
+        try{
+            $pdo = new PDO("mysql:host=localhost;dbname=graphi_print","root","");
+            $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = $pdo->prepare("SELECT id_com FROM Commande ORDER BY id_com DESC LIMIT 1");
+            $sql->execute();
+            $id = $sql->fetchAll(PDO::FETCH_ASSOC);
+            return $id[0]["id_com"];
+
+        }catch(PDOException $e){
+           
+            return FALSE;
         }
-    
-        // Écrire le contenu dans le fichier
-        file_put_contents($file, $fileContent, FILE_APPEND);
-    
-        // Envoyer une réponse au client (JavaScript) si nécessaire
-        echo "Données enregistrées avec succès dans le fichier demande_data.txt!";
-        exit; // Arrêter l'exécution du script PHP après le traitement des données
     }
+
+
+    function insererCommande( $id_com, $datecom, $idemp, $idfourn){
+        /* 
+        Fonction permettant d'insérer des données dans la table commande
+        @param: date de la commande, id de l'employé ayant effectué la commande, id du fournisseur chez qui la commande a été effectué
+        */
+        try{
+            $pdo = new PDO("mysql:host=localhost;dbname=graphi_print","root","");
+            $sql = $pdo->prepare("INSERT INTO Commande (id_com, date_com, id_emp, id_four) VALUES (:idcom, :datecom, :id_emp, :id_four)");
+
+            $sql->bindParam(":idcom",$id_com);
+            $sql->bindParam(":datecom", $datecom);
+            $sql->bindParam(":id_emp", $idemp);
+            $sql->bindParam(":id_four", $idfourn);
+            $sql->execute();
+            return TRUE;
+        }catch(PDOException $e){
+            return FALSE;
+        }
+
+    }
+
+
+
+    function insererAppartenir($idcons, $idcom, $qte){
+        /* 
+        Fonction permettant d'insérer des données dans la table Appartenir
+        @param: id du consommable commande, id la commande, quantité du consommable commandé  
+        
+        */
+        try{
+            $pdo = new PDO("mysql:host=localhost;dbname=graphi_print","root","");
+            $sql = $pdo->prepare("INSERT INTO Appartenir (id_com, id_cons, qte_com) VALUES (:idcom, :idcons, :qtecom)");
+
+            $sql->bindParam(":idcons", $idcons);
+            $sql->bindParam(":idcom", $idcom);
+            $sql->bindParam(":qtecom", $qte);
+            $sql->execute();
+            $pdo->commit();
+            return TRUE;
+        }catch(PDOException $e){
+            return FALSE;
+        }
+
+    }
+?>
+
+
+<?php
+    /* 
+    ===========================================================
+    GESTION DES OURNISSEURS
+    ===========================================================
+    */
+
+    function getAllFournisseurs(){
+        /* 
+            La fonction permet  récupérer tous les employés de la base de données
+
+        */
+
+        try{
+
+            $dpo = new PDO("mysql:host=localhost;dbname=graphi_print","root","");
+            $dpo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $sql = $dpo->prepare("SELECT * FROM Fournisseur");
+            $sql->execute();
+            $result = $sql->fetchAll(PDO::FETCH_ASSOC);
+            
+            return $result;
+
+        }catch(PDOException $e)
+        {
+            
+            return FALSE;
+        }
+    }
+
 ?>

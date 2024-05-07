@@ -43,6 +43,7 @@
                 // Affichage des résultats (à titre d'exemple)
                 foreach ($allEmployees as $employee) {
                     $photoEmploye = localPathToUrl( $employee["photo_emp"]) ;
+                    
 
                     echo <<<EMP
 

@@ -477,9 +477,27 @@
    
 }
 
+.main-article-forme .card-main .table-formulaire .card-categorie .nom-categorie p {
+    background-color: #00f;
+    color: #fff;
+    display: inline;
+    font-weight: 800;
+    animation: slide 2s infinite alternate;
+}
+
+@keyframes slide {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+
 
 .main-article-forme .card-main button{
-    width: 90%;
+    width: 80%;
     margin-top: 5px;
     height: 60px;
     background-color: #000;
@@ -540,4 +558,19 @@
 
   }
 
- 
+ /*Mise en page de la page d'approvisionnement*/
+ .main .main-article-forme .card-main .formulaire .table-formulaire 
+ tr .date input
+ {
+    width: 200px;
+    height: 40px;
+
+ }
+
+ .main .main-article-forme .card-main .formulaire .table-formulaire 
+ tr  .indicatetd
+ {
+    
+    width: 125px;
+    height: 40px;
+ }

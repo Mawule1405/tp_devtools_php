@@ -16,7 +16,7 @@
             "Catégories de consommables" =>["categories-id", "./ressources.php"],
             "Les consommables" => ["consommable-id", "./consommables.php"],
             "Attribution de consommables" =>["attribution-id", "./attribution.php"],
-            "Approvisionnement" =>["approvisionner-id", "#"]
+            "Approvisionnement" =>["approvisionner-id", "./approvisionnement.php"]
         );
     
         
@@ -26,6 +26,28 @@
         $couleur = "#f5f5f5";
 
         $idEmploye = 0;
+
+
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+       
+            $data = json_decode(file_get_contents("php://input"), true);
+            $file = 'demande_data.txt'; // Nom du fichier de sauvegarde
+            $fileContent = ''; // Contenu à écrire dans le fichier
+        
+            // Ajouter chaque entrée au contenu du fichier
+            foreach ($data as $entry) {
+                $mysqlDate = date("Y-m-d", strtotime($entry['date']));
+                insererDemande($entry['id_emp'], $entry['id_cons'], $entry['qte'], $mysqlDate);
+                $fileContent .= "ID Employé: " . $entry['id_emp'] . " | ID Consommable: " . $entry['id_cons'] . " | Quantité: " . $entry['qte'] . " | Date: " . $entry['date'] . PHP_EOL;
+            }
+        
+            // Écrire le contenu dans le fichier
+            file_put_contents($file, $fileContent, FILE_APPEND);
+        
+            // Envoyer une réponse au client (JavaScript) si nécessaire
+            echo "Données enregistrées avec succès dans le fichier demande_data.txt!";
+            exit; // Arrêter l'exécution du script PHP après le traitement des données
+        }
         
 ?>
 
@@ -324,25 +346,26 @@
 
         // Envoyer les données vers un script PHP via XMLHttpRequest
         var xhr = new XMLHttpRequest();
-        var url = "graphi_print.php"; // Nom du fichier PHP pour enregistrer les données
+        var url = "attribution.php"; // Nom du fichier PHP pour enregistrer les données
         xhr.open("POST", url, true);
         xhr.setRequestHeader("Content-Type", "application/json");
         xhr.onreadystatechange = function() {
             if (xhr.readyState === 4 && xhr.status === 200) {
                 // Réponse du serveur (si nécessaire)
-                console.log(xhr.responseText);
+                
                 document.querySelector('.alerte').style.backgroundColor = "green";
                 document.querySelector('.alerte').innerText = "Enrégistrement réussie";
                         
                 closeModal();
                 uncheckAllFields();
+                location.reload(true);
             }
         };
         xhr.send(JSON.stringify(dataToSave)); // Envoyer les données JSON à PHP
     } else {
         document.querySelector('.alerte').style.backgroundColor = "red";
         document.querySelector('.alerte').innerText = "Enrégistrement Echoué";
-       
+       closeModal();
     }
 }
 

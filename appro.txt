@@ -1,0 +1,4 @@
+ID cons: 1 | Quantité: 100 | idCom: 4
+ID cons: 2 | Quantité: 2 | idCom: 4
+ID cons: 1 | Quantité: 12 | idCom: 4
+ID cons: 2 | Quantité: 10 | idCom: 4

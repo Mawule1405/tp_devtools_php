@@ -17,7 +17,7 @@
             "Catégories de consommables" =>["categories-id", "./ressources.php"],
             "Les consommables" => ["consommable-id", "./consommables.php"],
             "Attribution de consommables" =>["attribution-id", "./attribution.php"],
-            "Approvisionnement" =>["approvisionner-id", "#"]
+            "Approvisionnement" =>["approvisionner-id", "./approvisionnement"]
         );
     
         
