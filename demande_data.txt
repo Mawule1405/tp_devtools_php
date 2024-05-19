@@ -1,2 +1,0 @@
-ID Employé: 2 | ID Consommable: 1 | Quantité: 10 | Date: 06/05/2024
-ID Employé: 2 | ID Consommable: 2 | Quantité: 5 | Date: 06/05/2024

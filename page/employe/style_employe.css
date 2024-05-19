@@ -1,0 +1,212 @@
+
+*{
+    padding: 0 20px;
+}
+
+body {
+    margin: 0 20px;
+    font-family: Arial, sans-serif;
+}
+
+.body-card {
+    display: flex;
+}
+
+.aside-card {
+    position: fixed; /* Fixe l'élément */
+    top: 0;
+    left: 0;
+    width: 300px; /* Largeur fixe */
+    height: 100vh; /* Hauteur de la vue */
+    overflow-y: auto; /* Activer le défilement vertical */
+    
+    border-right: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+
+.article-card {
+    margin-left: 320px; /* Espace pour l'aside fixe */
+    padding: 20px;
+    flex: 1; /* Permet à l'article de prendre tout l'espace restant */
+}
+
+.aside-card a{
+    display: flex;
+    justify-content: start;
+    gap: 3px;
+    height: 80px;
+    width: 100%;
+    margin-bottom: 3px;
+    padding-bottom: 2px;
+    text-decoration: none;
+    /*position: relative;*/
+}
+
+.aside-card .search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.aside-card .search-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    margin-right: 10px;
+}
+
+
+
+.aside-card a :focus{
+    background-color: red;
+}
+.aside-card a:hover{
+    transform: scale(1.02);
+    background-color: #000;
+    color: #fff;
+}
+
+
+.aside-card a p{
+    display: inline-block;
+    padding: 15px;
+    margin: 0;
+}
+.aside-card a img{
+    border-radius: 100%;
+}
+
+.article-card{
+    display: block;
+    width: 1000px;
+    margin-top: 0 ;
+    background-color: #fff;
+
+}
+
+.article-card .enregistrer-form{
+    text-align: right;
+}
+.article-card .enregistrer-form button{
+    display: inline-block;
+    font-size: 18px;
+    width: 50%;
+    margin-right: 60px;
+    height: 45px;
+    border: 0;
+    border-radius: 10px;
+    background-color: #007BFF;
+    color: #f9f9f9;
+}
+
+.article-card .enregistrer-form button:hover{
+    background-color: #0056b3;
+}
+#forme-card{
+    width: 90%;
+}
+
+.employe-card {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    background-color: #f1eeee;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.7);
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    width: 80%;
+    margin: 20px auto;
+}
+
+.photo-card {
+    flex: 1;
+    text-align: center;
+}
+
+.photo-card img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.photo-card p {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+div.information-card {
+    flex: 2;
+    margin-left: 15px;
+    width: 700px;
+}
+
+#forme-card .information-card table {
+    display: block;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#forme-card .information-card table tr{
+    height: 35px;
+    border-bottom: 1px solid #000;
+    color: #000;
+}
+
+#forme-card .information-card table tr td {
+    padding: 10px;
+    
+}
+
+#forme-card .information-card table tr td:first-child {
+    font-weight: bold;
+    width: 200px;
+}
+
+#forme-card .information-card table tr td:last-child {
+    font-weight: bold;
+    width: 500px;
+}
+.button-group {
+    margin-top: 20px;
+    text-align: right;
+    width: 100%;
+}
+
+.button-group button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.button-group button:hover {
+    background-color: #0056b3;
+}
+
+.button-group button:nth-child(2){
+    background-color: #04801f;
+}
+
+.button-group button:nth-child(2):hover{
+    background-color: #01340c;
+}
+
+.button-group button:last-child {
+    background-color: #DC3545;
+}
+
+.button-group button:last-child:hover {
+    background-color: #c82333;
+}
+
