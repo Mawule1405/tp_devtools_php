@@ -13,6 +13,7 @@ body {
 }
 
 .aside-card {
+    
     position: fixed; /* Fixe l'élément */
     top: 0;
     left: 0;
@@ -26,6 +27,7 @@ body {
 }
 
 .article-card {
+    
     margin-left: 320px; /* Espace pour l'aside fixe */
     padding: 20px;
     flex: 1; /* Permet à l'article de prendre tout l'espace restant */
