@@ -2,7 +2,7 @@
 
 <?php
     include "fenetre_modal_emp.php";
-
+    
     function transformPathToRelative($absolutePath) {
         // Extraire le nom de fichier depuis le chemin absolu
         $fileName = basename($absolutePath);
@@ -38,8 +38,8 @@ function buildEmploye($employe) {
             </div>
             <div class="button-group">
                 <button type="button" onclick="openModalWithData('{$employe['id_emp']}', '{$employe['nom_emp']}', '{$employe['prenom_emp']}', '{$employe['Sexe']}', '{$employe['nationalite_emp']}', '{$employe['lieu_res_emp']}', '{$employe['salaire_emp']}', '{$employe['email_emp']}', '{$employe['contact_emp']}', '{$employe['date_nais_emp']}', '{$employe['date_embau_emp']}', '{$employe['nom_serv']}', '{$employe['niveau_etu_emp']}', '{$photoProfile}')">Modifier</button>
-                <button type="button">Exporter</button>
-                <button type="button">Supprimer</button>
+                <button type="submit" name='action' value='exporterEmployeInfo'>Exporter</button>
+                <button type="button" name='action' valeur='supprimerEmploye'>Supprimer</button>
             </div>
         </form>
     </div>

@@ -1,0 +1,215 @@
+
+*{
+    padding: 0 20px;
+}
+
+body {
+    margin: 0 20px;
+    font-family: Arial, sans-serif;
+}
+
+.body-card {
+    display: flex;
+}
+
+.aside-card {
+   
+    position: fixed; /* Fixe l'élément */
+    top: 0;
+    left: 0;
+    width: 300px; /* Largeur fixe */
+    height: 100vh; /* Hauteur de la vue */
+    overflow-y: auto; /* Activer le défilement vertical */
+    
+    border-right: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 10px;
+}
+
+.article-card {
+    
+    margin-left: 320px; /* Espace pour l'aside fixe */
+    padding: 20px;
+    flex: 1; /* Permet à l'article de prendre tout l'espace restant */
+}
+
+.aside-card a{
+    display: flex;
+    justify-content: start;
+    gap: 3px;
+    height: 80px;
+    width: 100%;
+    margin-bottom: 3px;
+    padding-bottom: 2px;
+    text-decoration: none;
+    /*position: relative;*/
+}
+
+.aside-card .search-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.aside-card .search-input {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 300px;
+    margin-right: 10px;
+}
+
+
+.article-card{
+    display: block;
+    width: 1000px;
+    margin-top: 0 ;
+    background-color: #fff;
+
+}
+
+.article-card .enregistrer-formulaire{
+    text-align: right;
+}
+.article-card .enregistrer-formulaire button{
+    display: inline-block;
+    font-size: 18px;
+    width: 50%;
+    margin-right: 60px;
+    height: 45px;
+    border: 0;
+    border-radius: 10px;
+    background-color: #007BFF;
+    color: #f9f9f9;
+}
+
+.article-card .enregistrer-formulaire button:hover{
+    background-color: #0056b3;
+}
+#forme-card{
+    width: 90%;
+}
+
+/*================================================================*/
+
+
+/* Conteneur principal */
+.service-container {
+    font-family: Arial, sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 20px auto;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Titre du service */
+.service-title {
+    font-size: 24px;
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Détails du service */
+.service-details {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+/* Section responsable */
+.responsable-section {
+    text-align: center;
+    flex: 1;
+}
+
+.responsable-photo {
+    border-radius: 50%;
+    border: 0px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.responsable-title {
+    font-size: 18px;
+    color: #555;
+}
+
+/* Informations du service */
+.service-info strong{
+    color: #f5290a;
+    text-decoration: underline;
+    margin: 0;
+    padding-left: 0;
+}
+
+.service-info {
+    flex: 2;
+    text-align: left;
+    font-weight: 800;
+    padding: 0 20px;
+}
+
+.service-info p {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #666;
+}
+
+/* Actions */
+.service-actions {
+    flex: 1;
+    text-align: center;
+}
+
+.action-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 5px 0;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+}
+
+.action-button:hover {
+    background-color: #0056b3;
+}
+
+.action-button:last-child{
+    background-color: #ff0000;
+}
+
+.action-button:last-child:hover{
+    background-color: #7c0327;
+}
+
+/* Conteneur principal */
+.service-link-container {
+    font-family: Arial, sans-serif;
+    margin: 20px auto;
+    text-align: center;
+}
+
+/* Lien du service */
+.service-link {
+    text-decoration: none;
+}
+
+/* Titre du service */
+.service-title {
+    font-size: 24px;
+    color: #007bff;
+    margin: 0;
+}
+
+.service-title:hover {
+    color: #0056b3;
+    text-decoration: underline;
+}

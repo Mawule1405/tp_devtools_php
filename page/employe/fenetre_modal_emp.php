@@ -19,16 +19,17 @@ $date_nais="";
                     <span class="close" onclick="closeModal('myModal')">&times;</span>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post">
+                    <form action="" method="post"  enctype="multipart/form-data">
                             <input type="hidden" id="id_emp" name="id_emp">
-                            <input type="hidden" id="photo_emp_try" name="photo_emp_entry">
+                           
                             <span>
                                 <img id="current_photo" src="" alt="Photo de profil actuelle" style="width: 200px; height: 200px; display: block; margin-bottom: 10px;">
-                                <input type="file" id="photo_emp" name="photo_emp" style="display: block;" onchange="previewPhoto(event, 'current_photo')" value="">
+                                <input type="file" id="photo_emp" name="photo_emp" style="display: none;" onchange="previewPhoto(event, 'current_photo')">
                                 
                                 <button type="button" onclick="document.getElementById('photo_emp').click()">
                                     <img src="../../image/icon/add_icon.svg" alt="Changer photo de profil">
                                 </button>
+                                <input type="hidden" id="photo_emp_ent" name="photo_emp_ent" valeur="">
                             </span><br>
 
                             <label for="nom_emp">Nom:</label> <br>
@@ -80,7 +81,7 @@ $date_nais="";
                             <input type="text" id="niveau_etu_emp" name="niveau_etu_emp" > <br>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" id="enregistrerModification" name="action" value="Sauvegarder" onclick ="saveModification()">Sauvegarder</button>
+                            <button type="submit" id="enregistrerModification" name="action" value="Sauvegarder" onclick ="saveModification()">Sauvegarder</button>
                             <button type="button" onclick="closeModal('myModal')">Annuler</button>
                         </div>
                     </form>
@@ -98,8 +99,8 @@ $date_nais="";
                     <span class="close" onclick="closeModal('myModalNew')">&times;</span>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post">
-                            <input type="hidden" id="id_emp_new" >
+                    <form action="" method="post" enctype="multipart/form-data">
+                            <input type="hidden"  name ="id_emp_new" id="id_emp_new" value="">
 
                             <span>
                                 <img id="current_photo_new" src="" alt="Photo de profil actuelle" style="width: 200px; height: 200px; display: block; margin-bottom: 10px;">
@@ -107,6 +108,7 @@ $date_nais="";
                                 <button type="button" onclick="document.getElementById('photo_emp_new').click()">
                                     <img src="../../image/icon/add_icon.svg" alt="Changer photo de profil">
                                 </button>
+                                <input type="text" id="photo_emp_new_ent" name="photo_emp_new_ent" valeur="../../image/icon/add_icon.svg">
                             </span><br>
 
                             <label for="nom_emp_new">Nom:</label> <br>
@@ -115,7 +117,7 @@ $date_nais="";
                             <label for="prenom_emp_new">Prénom:</label> <br>
                             <input type="text" id="prenom_emp_new" name="prenom_emp_new" > <br>
                        
-                            <label for="Sexe_new">Sexe:</label><br>
+                            <label for="sexe_emp_new">Sexe:</label><br>
                             <div>
                                 <input type="radio" id="sexe_m_new" name="Sexe_new" value="Masculin" checked>
                                 <label for="sexe_m_new">Masculin</label>
@@ -145,7 +147,7 @@ $date_nais="";
                             <input type="date" id="date_embau_emp_new" name="date_embau_emp_new" > <br>
                     
                             <label for="nom_serv_new">Service:</label><br>
-                            <select name="" id="nom_serv_new">
+                            <select name="nom_serv_new" id="nom_serv_new">
                             <?php 
                                 
                                 foreach( $Services as $key => $Service ){
@@ -166,6 +168,11 @@ $date_nais="";
             </div>
         </div>
 </div>
+
+
+
+
+
 
 <style>
     

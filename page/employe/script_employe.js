@@ -8,9 +8,8 @@ function openModalWithData(id, nom, prenom, sexe, nationalite, lieuRes, salaire,
     } else if (sexe === 'Féminin') {
         document.getElementById('sexe_f').checked = true;
     }
-
     document.getElementById('current_photo').src = photo;
-    document.getElementById('photo_emp').value = photo;
+    document.getElementById('photo_emp_ent').value = photo;
     document.getElementById('nationalite_emp').value = nationalite;
     document.getElementById('lieu_res_emp').value = lieuRes;
     document.getElementById('salaire_emp').value = salaire;
@@ -26,8 +25,6 @@ function openModalWithData(id, nom, prenom, sexe, nationalite, lieuRes, salaire,
 
 
 function modifierModal(id) {
-
-    console.log(id)
     
     document.getElementById("myModal").style.display = "block";
 }
@@ -66,6 +63,7 @@ function previewPhoto(event, idDeLimage) {
 }
 
 
+
 function saveModification() {
 
     var idEmploye = document.getElementById("id_emp").value;
@@ -87,41 +85,52 @@ function saveModification() {
     var niveauEtudeEmploye = document.getElementById("niveau_etu_emp").value;
     var imageEmploye = document.getElementById("current_photo").src.toString();// Récupérer le fichier image
     var nomImageEmploye = imageEmploye.substring(imageEmploye.lastIndexOf('/') + 1);
-  
+    if (nomImageEmploye){
+        document.getElementById("photo_emp_ent").value = nomImageEmploye;
+    }
+    else{
+        nomImageEmploye = document.getElementById("photo_emp_ent").value;
+    }
+    
     var boutonEnregistrer = document.getElementById("enregistrerModification");
 
     boutonEnregistrer.value = "Sauvegarder";
-    // Créer un objet FormData pour envoyer les données du formulaire
-    var formData = new FormData();
-    formData.append('id_emp', idEmploye);
-    formData.append('nom_emp', nomEmploye);
-    formData.append('prenom_emp', prenomEmploye);
-    formData.append('nationalite_emp', nationaliteEmploye);
-    formData.append('date_nais_emp', dateNaisEmploye);
-    formData.append('date_embau_emp', dateEmbauEmploye);
-    formData.append('niveau_etu_emp', niveauEtudeEmploye);
-    formData.append('sexe_emp', sexeEmploye);
-    formData.append('nom_serv', serviceEmploye);
-    formData.append('salaire_emp', salaireEmploye);
-    formData.append('photo_emp', nomImageEmploye); // Ajouter l'image au FormData
-
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'employes.php', true);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            // Gérer la réponse du serveur si nécessaire
-            // Par exemple, actualiser la page ou afficher un message de confirmation
-            console.log("Envoie reussie")
-        } else {
-            console.error('Erreur lors de l\'enregistrement des modifications.');
-        }
-    };
-    xhr.send(formData); // Envoyer les données du formulaire au serveur via AJAX
-    console.log('FormData Entries:');
-    for (var pair of formData.entries()) {
-        console.log(pair[0] + ': ' + pair[1]);
-    }
+    
     closeModal('myModal');
+    //location.reload(true);
+}
+
+
+
+function saveModificationNew() {
+
+    var idEmploye = document.getElementById("id_emp_new").value;
+    var nomEmploye = document.getElementById("nom_emp_new").value;
+    var prenomEmploye = document.getElementById("prenom_emp_new").value;
+    var sexeEmploye ;
+    if ( document.getElementById('sexe_m_new').checked){
+        sexeEmploye = 'Masculin';
+    }else{
+        sexeEmploye = 'Féminin';
+    }
+
+   
+    var nationaliteEmploye = document.getElementById("nationalite_emp_new").value;
+    var salaireEmploye = document.getElementById("salaire_emp_new").value;
+    var dateNaisEmploye = document.getElementById("date_nais_emp_new").value;
+    var dateEmbauEmploye = document.getElementById("date_embau_emp_new").value;
+    var serviceEmploye = document.getElementById("nom_serv_new").value;
+    var niveauEtudeEmploye = document.getElementById("niveau_etu_emp_new").value;
+    var imageEmploye = document.getElementById("current_photo_new").src.toString();// Récupérer le fichier image
+    var nomImageEmploye = imageEmploye.substring(imageEmploye.lastIndexOf('/') + 1);
+    
+    
+    var boutonEnregistrer = document.getElementById("enregistrerModificationNew");
+
+    boutonEnregistrer.value = "enregistrernouvel";
+
+    
+    closeModal('myModalNew');
     //location.reload(true);
 }
 
@@ -153,8 +162,6 @@ function searchEmployees() {
 
 
 function enregistrerNouvelEmploye() {
-    // Réinitialiser les champs de saisie
-    
     
     document.getElementById('current_photo_new').src = "../../image/photo_employe/photo_de_profile.jpeg";
     
@@ -166,5 +173,7 @@ function enregistrerNouvelEmploye() {
 window.onload = function() {
     searchEmployees();
 };
+
+
 
 
