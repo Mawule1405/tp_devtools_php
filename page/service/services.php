@@ -3,7 +3,7 @@
     
    
 
-    if (isset($_POST)) {
+    if (isset($_POST["actionService"])) {
         if($_POST["actionService"] === "modifierService"){
             $idService = intval($_POST["id_service"]);
             $nomService = $_POST["nom_service"];

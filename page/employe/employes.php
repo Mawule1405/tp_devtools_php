@@ -93,7 +93,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
             // Déplacer le fichier téléchargé vers le dossier cible
             if (!move_uploaded_file($fichierTelecharge['tmp_name'], $cheminFichierCible)) {
-                $nomFichier = $_POST['photo_emp_new_ent'];
                 $cheminFichierCible = $dossierTelechargement."photo_de_profile.jpeg";
                 
             }
