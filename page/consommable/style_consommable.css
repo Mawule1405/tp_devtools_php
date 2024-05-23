@@ -1,0 +1,324 @@
+/*========================^^^^^^^^^^^^^^^^^^^^^^^^=======================*/
+/*====================                           ========================*/
+
+.body-card{
+    display: flex;
+  flex-direction: row;
+
+}
+
+.article-card .enregistrer-forme{
+    display: flex;
+    justify-content: space-between;
+    height: 35px;
+}
+
+.article-card .enregistrer-forme #rechercheCons{
+    display: none;
+    width: 65%;
+    margin-left: 2%;
+    padding: 10px 30px 10px 10px; /* Ajouter du padding pour faire de la place pour l'icône */
+border: 1px solid #ccc;
+border-radius: 5px;
+background-color: #fff;
+background-image: url('../../image/icon/recherche.svg'); /* Ajouter l'icône de recherche */
+background-size: 20px; /* Taille de l'icône */
+background-repeat: no-repeat; /* Empêcher la répétition de l'icône */
+background-position: calc(100% - 10px) center; /* Positionner l'icône à droite */
+transition: background-color 0.3s;
+}
+
+.article-card .enregistrer-forme #enregistrerConsommable{
+    width: 25%;
+    margin-right: 2%;
+}
+
+.article-card .title-categorie{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #f3f3f3;
+    padding: 5px 5px;
+    margin: 0 2%;
+    box-shadow: 1px 1px 3px #222;
+}
+
+.article-card .title-categorie h2{
+    width: 65%;
+}
+
+.article-card .title-categorie form{
+    display: flex;
+    justify-content: space-between;
+    width: 26%;
+    margin: 0;
+    padding: 0;
+}
+
+.article-card .title-categorie form button{
+    display: inline-block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    height: 40px;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(6, 241, 22);
+    margin: 10px auto;
+}
+
+.article-card .title-categorie form button:hover{
+    background-color: rgb(5, 98, 22);
+    transform: scale(1.05);
+}
+
+
+.ajoutCategorie {
+background-color: #2121ff;
+color: #fff;
+font-size: 14px;
+border-radius: 5px;
+border: none;
+transition: background-color 0.3s; /* Ajouter une transition pour une animation fluide */
+}
+
+.ajoutCategorie:hover {
+    background-color: #0000cc; /* Couleur plus foncée au survol */
+    transform: scale(1.2)
+}
+
+
+.categorie-consommable{
+    display: flex;
+    flex-wrap: wrap;
+    gap:20px;
+    flex-direction: row;
+}
+
+
+/*================================PAGE==================================*/
+
+.aside-card {
+
+position: fixed; /* Fixe l'élément */
+top: 0;
+left: 0;
+width: 300px; /* Largeur fixe */
+height: 100vh; /* Hauteur de la vue */
+overflow-y: auto; /* Activer le défilement vertical */
+border-right: 1px solid #ccc;
+background-color: #f9f9f9;
+padding: 10px;
+}
+
+
+.article-card {
+margin-left: 320px; /* Espace pour l'aside fixe */
+padding: 20px;
+flex: 1; /* Permet à l'article de prendre tout l'espace restant */
+}
+
+
+.aside-card a{
+display: flex;
+justify-content: start;
+gap: 3px;
+height: 80px;
+width: 100%;
+margin-bottom: 3px;
+padding-bottom: 2px;
+text-decoration: none;
+/*position: relative;*/
+}
+
+
+.aside-card .search-form {
+display: flex;
+justify-content: center;
+align-items: center;
+margin-top: 20px;
+}
+
+
+.aside-card .search-input {
+padding: 10px;
+border: 1px solid #ccc;
+border-radius: 5px;
+width: 300px;
+margin-right: 10px;
+}
+
+
+
+.aside-card a:hover{
+transform: scale(1.02);
+background-color: #000;
+
+}
+
+
+.aside-card a p{
+display: inline-block;
+padding: 15px;
+margin: 0;
+}
+
+
+.article-card{
+display: block;
+width: 70%;
+margin-top: 0 ;
+background-color: #fff;
+}
+
+
+/*==============================CONSOMMABLES=========================*/
+/* Container du produit */
+.product-container {
+    width: 200px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    margin: 20px auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* Ajouté pour le positionnement absolu des actions */
+    height: 400px; /* Hauteur fixe pour démonstration */
+}
+
+/* Image du produit */
+.product-image {
+    width: 100%;
+    background-color: #000;
+}
+
+.product-image .image {
+    width: 100%;
+    border-radius: 4px 4px 0 0;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+}
+
+.product-image .image:hover {
+    transform: rotateY(180deg);
+}
+
+/* Détails du produit */
+.product-details {
+    width: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-grow: 1; /* Permet à cette section de prendre tout l'espace restant */
+}
+
+.product-details h3{
+    font-size: 15px;
+    margin: 0 0 2px 1px
+}
+
+.quantity-section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.quantity-available,
+.quantity-stock {
+    font-weight: bold;
+    color: #333;
+    margin: 0 1px;
+    padding: 5px 5px;
+    border: 1px solid #000;
+    width: 150px;
+    border-radius: 5px;
+}
+
+.quantity-stock {
+    border: 1px solid #f00;
+}
+
+.price {
+    font-size: 1.2em;
+    color: #007BFF;
+    margin-bottom: 5px;
+}
+
+/* Actions sur le produit */
+.product-actions {
+    display: flex;
+    justify-content: space-between;
+    background-color: #000;
+    width: 100%;
+    position: absolute; /* Assure que l'élément est collé en bas */
+    bottom: 0; /* Positionne l'élément en bas */
+    padding: 10px; /* Ajoute du padding pour un meilleur espacement */
+}
+
+.action-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    transition: transform 0.2s;
+}
+
+.action-button:hover {
+    transform: scale(1.2);
+}
+
+.action-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/*======================CATEGORIE=================*/
+/* Style pour le lien du produit */
+.product-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+/* Container du header du produit */
+.product-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin: 20px auto;
+    width: 200px;
+}
+
+/* Style pour le nom du produit */
+.product-name {
+    flex-grow: 1;
+    margin: 0;
+    font-size: 1.2em;
+}
+
+/* Style pour le compteur de produit */
+.product-count {
+    background-color: #007BFF; /* Couleur de fond du cercle */
+    color: #fff; /* Couleur du texte */
+    border-radius: 50%; /* Pour créer un cercle */
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    text-align: center;
+    font-size: 1em;
+}
+
