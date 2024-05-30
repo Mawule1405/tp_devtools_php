@@ -180,7 +180,7 @@
                     if($consommables){
                         echo <<<CON
                             <div class="title-categorie">
-                                <h2 class='' id='categorie_.$idCat'>$nomCat </h2>
+                                <h2 class='' id='categorie_$idCat'>$nomCat </h2>
                                 <form action="" method="post">
                                     <button type="button" name="actionCategorie" value="modifierCategorie" onclick="editCategory($escapedJsonCategory)">Modifier</button>
                                     

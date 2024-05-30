@@ -3,10 +3,6 @@
 <?php include "graphi_print_emp.php";
 $Services = getAllService();
 
-$id_emp =0;
-$nom_emp ="";
-$prenom_emp = "";
-$date_nais="";
 
     
 ?>
@@ -29,14 +25,14 @@ $date_nais="";
                                 <button type="button" onclick="document.getElementById('photo_emp').click()">
                                     <img src="../../image/icon/add_icon.svg" alt="Changer photo de profil">
                                 </button>
-                                <input type="hidden" id="photo_emp_ent" name="photo_emp_ent" valeur="">
+                                <input type="hidden" id="photo_emp_ent" name="photo_emp_ent" value="">
                             </span><br>
 
                             <label for="nom_emp">Nom:</label> <br>
-                            <input type="text" id="nom_emp" name="nom_emp" > <br>
+                            <input type="text" id="nom_emp" name="nom_emp" required> <br>
                         
                             <label for="prenom_emp">Prénom:</label> <br>
-                            <input type="text" id="prenom_emp" name="prenom_emp" > <br>
+                            <input type="text" id="prenom_emp" name="prenom_emp" required> <br>
                        
                             <label for="sexe_emp">Sexe:</label><br>
                             <div>
@@ -47,28 +43,28 @@ $date_nais="";
                             </div>
                         
                             <label for="nationalite_emp">Nationalité:</label><br>
-                            <input type="text" id="nationalite_emp" name="nationalite_emp" > <br>
+                            <input type="text" id="nationalite_emp" name="nationalite_emp" required> <br>
 
                             <label for="lieu_res_emp">Lieu de résidence:</label><br>
-                            <input type="text" id="lieu_res_emp" name="lieu_res_emp" > <br>
+                            <input type="text" id="lieu_res_emp" name="lieu_res_emp" required> <br>
                         
                             <label for="salaire_emp">Salaire:</label><br>
-                            <input type="number" id="salaire_emp" name="salaire_emp"> <br>
+                            <input type="number" id="salaire_emp" name="salaire_emp" required> <br>
                       
                             <label for="email_emp">Email:</label><br>
-                            <input type="email" id="email_emp" name="email_emp" > <br>
+                            <input type="email" id="email_emp" name="email_emp" required> <br>
                    
                             <label for="contact_emp">Téléphone:</label><br>
-                            <input type="text" id="contact_emp" name="contact_emp" > <br>
+                            <input type="text" id="contact_emp" name="contact_emp" required> <br>
                       
                             <label for="date_nais_emp">Date de naissance:</label><br>
-                            <input type="date" id="date_nais_emp" name="date_nais_emp" > <br>
+                            <input type="date" id="date_nais_emp" name="date_nais_emp" required> <br>
                       
                             <label for="date_embau_emp">Date d'embauche:</label><br>
-                            <input type="date" id="date_embau_emp" name="date_embau_emp" > <br>
+                            <input type="date" id="date_embau_emp" name="date_embau_emp" required> <br>
                     
                             <label for="nom_serv">Service:</label><br>
-                            <select name="nom_serv" id="nom_serv">
+                            <select name="nom_serv" id="nom_serv" required>
                                 <?php 
                                 
                                     foreach( $Services as $key => $Service ){
@@ -78,7 +74,7 @@ $date_nais="";
                             </select>
                  
                             <label for="niveau_etu_emp">Niveau d'étude:</label> <br>
-                            <input type="text" id="niveau_etu_emp" name="niveau_etu_emp" > <br>
+                            <input type="text" id="niveau_etu_emp" name="niveau_etu_emp" required> <br>
                         </div>
                         <div class="modal-footer">
                             <button type="submit" id="enregistrerModification" name="action" value="Sauvegarder" onclick ="saveModification()">Sauvegarder</button>
@@ -108,14 +104,14 @@ $date_nais="";
                                 <button type="button" onclick="document.getElementById('photo_emp_new').click()">
                                     <img src="../../image/icon/add_icon.svg" alt="Changer photo de profil">
                                 </button>
-                                <input type="text" id="photo_emp_new_ent" name="photo_emp_new_ent" valeur="../../image/icon/add_icon.svg">
+                                <input type="text" id="photo_emp_new_ent" name="photo_emp_new_ent" value="../../image/photo_employe/photo_de_profil.jpeg" style="display:none;">
                             </span><br>
 
                             <label for="nom_emp_new">Nom:</label> <br>
-                            <input type="text" id="nom_emp_new" name="nom_emp_new" > <br>
+                            <input type="text" id="nom_emp_new" name="nom_emp_new" required> <br>
                         
                             <label for="prenom_emp_new">Prénom:</label> <br>
-                            <input type="text" id="prenom_emp_new" name="prenom_emp_new" > <br>
+                            <input type="text" id="prenom_emp_new" name="prenom_emp_new" required> <br>
                        
                             <label for="sexe_emp_new">Sexe:</label><br>
                             <div>
@@ -126,38 +122,39 @@ $date_nais="";
                             </div>
                         
                             <label for="nationalite_emp_new">Nationalité:</label><br>
-                            <input type="text" id="nationalite_emp_new" name="nationalite_emp_new" > <br>
+                            <input type="text" id="nationalite_emp_new" name="nationalite_emp_new" required> <br>
 
                             <label for="lieu_res_emp_new">Lieu de résidence:</label><br>
-                            <input type="text" id="lieu_res_emp_new" name="lieu_res_emp_new" > <br>
+                            <input type="text" id="lieu_res_emp_new" name="lieu_res_emp_new" required> <br>
                         
                             <label for="salaire_emp_new">Salaire:</label><br>
-                            <input type="number" id="salaire_emp_new" name="salaire_emp_new"> <br>
+                            <input type="number" id="salaire_emp_new" name="salaire_emp_new" required> <br>
                       
                             <label for="email_emp_new">Email:</label><br>
-                            <input type="email" id="email_emp_new" name="email_emp_new" > <br>
+                            <input type="email" id="email_emp_new" name="email_emp_new" required> <br>
                    
                             <label for="contact_emp_new">Téléphone:</label><br>
-                            <input type="text" id="contact_emp_new" name="contact_emp_new" > <br>
+                            <input type="text" id="contact_emp_new" name="contact_emp_new" required> <br>
                       
                             <label for="date_nais_emp_new">Date de naissance:</label><br>
-                            <input type="date" id="date_nais_emp_new" name="date_nais_emp_new" > <br>
+                            <input type="date" id="date_nais_emp_new" name="date_nais_emp_new" required> <br>
                       
                             <label for="date_embau_emp_new">Date d'embauche:</label><br>
-                            <input type="date" id="date_embau_emp_new" name="date_embau_emp_new" > <br>
+                            <input type="date" id="date_embau_emp_new" name="date_embau_emp_new" required> <br>
                     
-                            <label for="nom_serv_new">Service:</label><br>
-                            <select name="nom_serv_new" id="nom_serv_new">
-                            <?php 
+                            <label for="id_serv_new">Service:</label><br>
+                            <select name="id_serv_new" id="id_serv_new" required>
                                 
-                                foreach( $Services as $key => $Service ){
-                                    echo "<option  valeur = \"{$Service['id_serv']}\"> {$Service['nom_serv']} </option>";
-                                }
-                            ?>
-                        </select>
+                                <?php 
+                                    
+                                    foreach( $Services as $key => $Service ){
+                                        echo "<option  value = \"{$Service['id_serv']}\"> {$Service['nom_serv']} </option>";
+                                    }
+                                ?>
+                            </select>
              
                         <label for="niveau_etu_emp_new">Niveau d'étude:</label> <br>
-                        <input type="text" id="niveau_etu_emp_new" name="niveau_etu_emp_new" > <br>
+                        <input type="text" id="niveau_etu_emp_new" name="niveau_etu_emp_new" required> <br>
                     </div>
                     <div class="modal-footer">
                         
@@ -169,6 +166,43 @@ $date_nais="";
         </div>
 </div>
 
+
+
+<!-- Fenetre modal pour supprimer un catégorie si la employé est supprimable -->
+<div id="employeModalDelete" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeCategoryModalBtn" onclick="closeModal('employeModalDelete')">&times;</span>
+        <h2>Veillez confirmer la suppression</h2>
+        <form id="categoryForm" action="" method="post">
+            <label for="nom_employe">ID de la catégorie:</label><br><br>
+            <input type="text" id="id_employe_delete" class="nom_employe_input" name="i_employe" readonly><br><br>
+            <label for="nom_employe">Nom de la catégorie:</label><br><br>
+            <input type="text" id="nom_employe_delete" class="nom_employe_input" name="nom_employe" readonly><br><br>
+            <div class="button-group">
+                <button type="submit" class="submit-button" name="action" value="deleteEmploye">Confirmer</button>
+                <button type="button" class="cancel-button" onclick="closeModal('employeModalDelete')">Annuler</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!-- Fenetre modal pour modifier un catégorie si la catégorie n'est pas supprimable -->
+<div id="employeModalDeleteImpossible" class="modal">
+    <div class="modal-content">
+        <span class="close" id="closeEmployeModalBtn" onclick="closeModal('employeModalDeleteImpossible')">&times;</span>
+        <h2>Impossible de supprimer cette catégorie. </h2>
+        <h4>Elle contient des consommables.</h4>
+        <form id="categoryForm" action="" method="post">
+            
+            <div class="button-group" style="text-align:center">
+                
+                <button type="submit" class="submit-button" onclick="closeModal('employeModalDeleteImpossible')">Ok</button>
+                
+            </div>
+        </form>
+    </div>
+</div>
 
 
 
@@ -186,7 +220,7 @@ $date_nais="";
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: rgba(0, 0, 0, 0);
+        background-color: rgba(0, 0, 0, 0.2);
         padding-top: 60px;
     }
 
@@ -198,6 +232,7 @@ $date_nais="";
         width: 80%;
         max-width: 600px;
         border-radius: 10px;
+        overflow: auto;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
     }
 

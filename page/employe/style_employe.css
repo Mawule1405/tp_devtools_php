@@ -13,7 +13,7 @@ body {
 }
 
 .aside-card {
-
+    display: none;
     position: fixed; /* Fixe l'élément */
     top: 0;
     left: 0;
